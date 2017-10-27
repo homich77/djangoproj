@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from djangoapp import views
+from django.conf.urls.static import static
+from second_proj import settings
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,4 +33,4 @@ urlpatterns = [
     url(r'^authors/(?P<pk>\d+)$', views.AuthorUpdateView.as_view(), name="AuthorUpdateView"),
     url(r'^categories/create/$', views.CategoryCreateView.as_view(), name="create_category"),
     url(r'^comments/create/$', views.CategoryCreateView.as_view(), name="create_comment")
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
